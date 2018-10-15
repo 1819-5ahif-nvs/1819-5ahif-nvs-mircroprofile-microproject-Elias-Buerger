@@ -1,0 +1,8 @@
+swarm:
+  datasources:
+    data-sources:
+      surveyDS:
+        driver-name: derby
+        connection-url: jdbc:derby://localhost:1527/surveyDb;create=true
+        user-name: APP
+        password: APP
