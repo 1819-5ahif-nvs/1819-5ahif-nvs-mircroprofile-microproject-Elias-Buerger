@@ -1,7 +1,7 @@
-package at.htl.nvs.survey.rest;
+package at.htl.nvs.rest;
 
-import at.htl.nvs.survey.business.repositories.UserRepository;
-import at.htl.nvs.survey.entities.User;
+import at.htl.nvs.entities.User;
+import at.htl.nvs.persistence.UserRepository;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 
-@Path("user")
+@Path("/user")
 public class UserEndpoint {
 
     @Inject
@@ -23,9 +23,16 @@ public class UserEndpoint {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{id}")
+    @Path("id/{id}")
     public Response getById(@PathParam("id") long id) {
         return Response.ok(userRepository.find(id)).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("name/{regex}")
+    public Response getById(@PathParam("regex") String regex) {
+        return Response.ok(userRepository.getByRegexUsername(regex)).build();
     }
 
     @POST

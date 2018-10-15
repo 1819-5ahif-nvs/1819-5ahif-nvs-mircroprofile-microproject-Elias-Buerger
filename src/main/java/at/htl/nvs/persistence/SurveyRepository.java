@@ -1,20 +1,22 @@
 package at.htl.nvs.persistence;
 
 import at.htl.nvs.entities.Survey;
+import at.htl.nvs.entities.User;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import java.util.ArrayList;
+import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class SurveyRepository extends Repository<Survey> {
 
-    /*public List<Survey> getOwnedByUser(User user) {
+    public List<Survey> getOwnedByUser(User user) {
         if(user == null) {
             return new ArrayList<>();
         } else {
-            List<Survey> result = em.createNamedQuery("Survey.fromUser", genericClass)
+            return em.createNamedQuery("Survey.fromUser", genericClass)
                     .setParameter(1, user.getId())
                     .getResultList();
-            return result;
         }
-    }*/
+    }
 }

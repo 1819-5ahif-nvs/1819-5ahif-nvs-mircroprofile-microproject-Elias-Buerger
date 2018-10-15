@@ -2,18 +2,22 @@ package at.htl.nvs.rest;
 
 import at.htl.nvs.entities.Survey;
 import at.htl.nvs.persistence.SurveyRepository;
+import at.htl.nvs.persistence.UserRepository;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 
-@Path("survey")
+@Path("/survey")
 public class SurveyEndpoint {
 
-    @EJB
-    private SurveyRepository surveyRepository;
+    @Inject
+    private SurveyRepository surveyRepository = new SurveyRepository();
+
+    @Inject
+    private UserRepository userRepository;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -23,9 +27,16 @@ public class SurveyEndpoint {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{id}")
+    @Path("id/{id}")
     public Response getById(@PathParam("id") long id) {
         return Response.ok(surveyRepository.find(id)).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("user/{userId}")
+    public Response getByUserId(@PathParam("userId") long userId) {
+        return Response.ok(surveyRepository.getOwnedByUser(userRepository.find(userId))).build();
     }
 
     @POST

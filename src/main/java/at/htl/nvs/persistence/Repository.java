@@ -1,15 +1,17 @@
 package at.htl.nvs.persistence;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+@Transactional
 public abstract class Repository<T> implements Serializable {
 
-    @PersistenceContext
+    @PersistenceContext()
     protected EntityManager em;
     protected Class<T> genericClass;
 

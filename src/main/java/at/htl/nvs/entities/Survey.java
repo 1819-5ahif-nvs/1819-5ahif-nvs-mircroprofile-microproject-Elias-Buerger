@@ -10,18 +10,18 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "SURVEY")
-//@NamedQuery(name = "Survey.fromUser", query = "select survey from Survey survey where survey.creator.id = ?1")
+@NamedQuery(name = "Survey.fromUser", query = "select survey from Survey survey where survey.creator.id = ?1")
 public class Survey implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /*@JoinColumn(name = "CREATOR")
+    @JoinColumn(name = "CREATOR")
     @ManyToOne
     @Valid
     @NotNull
-    private User creator;*/
+    private User creator;
 
     @Column(name = "TIME_OF_CREATION")
     @NotNull
@@ -39,7 +39,8 @@ public class Survey implements Serializable {
     public Survey() {
     }
 
-    public Survey(LocalDateTime timeOfCreation, String title, String description) {
+    public Survey(User creator, LocalDateTime timeOfCreation, String title, String description) {
+        this.creator = creator;
         this.timeOfCreation = timeOfCreation;
         this.title = title;
         this.description = description;
@@ -47,6 +48,15 @@ public class Survey implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     public LocalDateTime getTimeOfCreation() {
