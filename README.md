@@ -1,8 +1,10 @@
-# 1819_5ahif_nvs_microprofile_microproject
+﻿# 1819_5ahif_nvs_microprofile_microproject
+
 Erstes Microprofile-Programm für Thorntail
 
-##Aufbau
-###Thorntail
+## Aufbau
+
+### Thorntail
 
 * Das Projekt verwendet nur den Derby Driver und Libraries aus der Thorntail bom.
 (Nur die nötigen, um eine möglichst kleine JAR zu generieren)
@@ -10,14 +12,16 @@ Erstes Microprofile-Programm für Thorntail
 Durch den Treibernamen "derby" wird automatisch die richtige Klasse aus der Derby dependency gesucht und initialisiert.
 Die Datasource wird in der persistence.xml dann verwendet.
 
-###Code
+### Code
+
 * Der Code ist fast gleich wie mein altes Microproject aufgebaut.
 * Die Initbean belegt die Datenbank mit einigen Testdaten.
 * Es gibt 2 Entities (Survey und User (Jeder User kann mehrere Surveys erstellen))
 * Pro Entity gibt es ein Repo, dass von der generischen Repository Klasse erbt.
 * Via Rest können die Repositories angesprochen werden. (Pro Repo ein JAX RS Endpoint)
 
-##Benutzung
+## Benutzung
+
 1. Das Projekt kann mit maven gebaut werden. (mvn package)
    Das erstellt dann ein war File (microprofile.war) und ein jar File (microprofile-thorntail.jar) 
 2. Eine Derby Instanz muss gestart werden. (.../Derby/bin/startNetworkServer -noSecurityManager)
@@ -30,7 +34,8 @@ Die Datasource wird in der persistence.xml dann verwendet.
     + http://localhost:8080/survey/user/2 //Alle Surveys des Users mit der ID 2
     + Pro Endpoint sind POST, PUT und DELETE ebenfalls möglich.
 
-##Probleme
+## Probleme
+
 Hier noch ein Paar Probleme und Differenzen zwischen Wildfly und Thorntail,
 die schwer zu erkennen sind und mich Stunden gekostet haben :)
 
