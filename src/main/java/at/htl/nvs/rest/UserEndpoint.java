@@ -3,6 +3,7 @@ package at.htl.nvs.rest;
 import at.htl.nvs.entities.User;
 import at.htl.nvs.persistence.UserRepository;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -10,6 +11,7 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 
 @Path("/user")
+@RequestScoped
 public class UserEndpoint {
 
     @Inject
@@ -17,6 +19,7 @@ public class UserEndpoint {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("all")
     public Response getAll() {
         return Response.ok(userRepository.getAll()).build();
     }

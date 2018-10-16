@@ -3,12 +3,16 @@ package at.htl.nvs.persistence;
 import at.htl.nvs.entities.Survey;
 import at.htl.nvs.entities.User;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApplicationScoped
+@Stateless
 public class SurveyRepository extends Repository<Survey> {
+
+    public SurveyRepository() {
+        super(Survey.class);
+    }
 
     public List<Survey> getOwnedByUser(User user) {
         if(user == null) {

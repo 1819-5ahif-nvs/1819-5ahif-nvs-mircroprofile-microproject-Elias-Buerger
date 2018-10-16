@@ -4,6 +4,7 @@ import at.htl.nvs.entities.Survey;
 import at.htl.nvs.persistence.SurveyRepository;
 import at.htl.nvs.persistence.UserRepository;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -11,6 +12,7 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 
 @Path("/survey")
+@RequestScoped
 public class SurveyEndpoint {
 
     @Inject
@@ -21,6 +23,7 @@ public class SurveyEndpoint {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("all")
     public Response getAll() {
         return Response.ok(surveyRepository.getAll()).build();
     }
