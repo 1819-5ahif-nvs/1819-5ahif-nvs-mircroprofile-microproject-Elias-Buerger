@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>io.thorntail</groupId>
-            <artifactId>jpa</artifactId>
+            <artifactId>jpa-eclipselink</artifactId>
         </dependency>
         <dependency>
             <groupId>io.thorntail</groupId>
